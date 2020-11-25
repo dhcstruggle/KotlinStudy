@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <Button
+            android:id="@+id/btn_sys_infos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="SystemInfo"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_mytest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="MyTest"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Layout"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Log"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_bank_service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="BankService"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Service"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_broad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Broad"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+
+        <Button
+            android:id="@+id/btn_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Data"
+            android:onClick="onMainClick"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_handler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Handler"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="TextView"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Button"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="EditText"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_radiobtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="RadioButton"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="CheckBox"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="ImageView"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="ListView"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="GridView"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="RecyclerView"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_webview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="WebView"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_toast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Toast"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Dialog"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Progress"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_cus_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Custom Dialog"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_popup_window"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="PopWindow"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_life_cycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="LifeCycle"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_jump"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Jump"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Fragment"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Listener"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+</ScrollView>

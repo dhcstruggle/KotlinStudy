@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/btn_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:onClick="onLayoutClick"
+        android:text="LinearLayout"
+        android:textAllCaps="false"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/btn_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="RelativeLayout"
+        android:textAllCaps="false"
+        android:onClick="onLayoutClick"/>
+
+    <Button
+        android:id="@+id/btn_constrain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="ConstraintLayout"
+        android:textAllCaps="false"
+        android:onClick="onLayoutClick"/>
+
+    <Button
+        android:id="@+id/btn_absolute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="AbsoluteLayout"
+        android:textAllCaps="false"
+        android:onClick="onLayoutClick"/>
+
+    <Button
+        android:id="@+id/btn_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="FrameLayout"
+        android:textAllCaps="false"
+        android:onClick="onLayoutClick"/>
+
+    <Button
+        android:id="@+id/btn_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="TableLayout"
+        android:textAllCaps="false"
+        android:onClick="onLayoutClick"/>
+
+</LinearLayout>
