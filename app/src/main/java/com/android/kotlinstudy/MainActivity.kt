@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             R.id.btn_service -> null
             R.id.btn_broad -> null
             R.id.btn_data -> null
-            R.id.btn_handler -> null
+            R.id.btn_handler -> HandlerActivity::class.java
             R.id.btn_textview -> TextViewActivity::class.java
             R.id.btn_button -> ButtonActivity::class.java
             R.id.btn_edittext -> EditTextActivity::class.java
