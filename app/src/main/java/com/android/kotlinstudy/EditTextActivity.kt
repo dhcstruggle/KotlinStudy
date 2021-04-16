@@ -21,7 +21,7 @@ class EditTextActivity : AppCompatActivity() {
         Log.d(mTab, "onCreate")
         title = this.javaClass.simpleName
 
-        et_1.doOnTextChanged {text, start, count, after ->
+        et_1.doOnTextChanged{text, start, count, after ->
             Log.d("onTextChanged: ", text.toString())
             Toast.makeText(this, text.toString(), Toast.LENGTH_SHORT).show()
         }
