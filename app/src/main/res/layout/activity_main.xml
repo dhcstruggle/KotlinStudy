@@ -11,6 +11,24 @@
         android:layout_margin="10dp">
 
         <Button
+            android:id="@+id/btn_perm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Permission Access"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+        
+        <Button
+            android:id="@+id/btn_wifi_infos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="WifiInfo"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
             android:id="@+id/btn_sys_infos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

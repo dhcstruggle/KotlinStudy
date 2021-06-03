@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
             R.id.btn_fragment -> null
             R.id.btn_event -> null
             R.id.btn_sys_infos -> SystemInfo::class.java
+            R.id.btn_wifi_infos -> WifiInfo::class.java
+            R.id.btn_perm -> PermissionActivity::class.java
             else -> null
         }
 

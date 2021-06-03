@@ -22,7 +22,7 @@ class SystemInfo : AppCompatActivity() {
             PRODUCT: ${Build.PRODUCT}
             CPU_ABI: ${Build.CPU_ABI}
             MODEL: ${Build.MODEL}
-            SDK: ${Build.VERSION.SDK}
+            SDK: ${Build.VERSION.SDK_INT}
             VERSION.RELEASE: ${Build.VERSION.RELEASE}
             DEVICE: ${Build.DEVICE}
             BRAND: ${Build.BRAND}
@@ -30,6 +30,7 @@ class SystemInfo : AppCompatActivity() {
             ID: ${Build.ID}
             MANUFACTURER: ${Build.MANUFACTURER}
             USER: ${Build.USER}
+            HARDWARE: ${Build.HARDWARE}
             """.trimIndent()
 
         tv_sys_info.text = sysInfo
