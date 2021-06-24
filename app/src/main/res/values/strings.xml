@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">KotlinStudy</string>
     <string name="chaos_string">Hello Dhcstruggle</string>
+    <string name="status_list">Device List</string>
+    <string name="status_removed">Device Detached</string>
+    <string name="status_added">Device Attached</string>
 </resources>

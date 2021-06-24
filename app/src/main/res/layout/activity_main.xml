@@ -11,6 +11,15 @@
         android:layout_margin="10dp">
 
         <Button
+            android:id="@+id/btn_hotplug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Get HotPlug Path"
+            android:onClick="onMainClick"
+            android:textAllCaps="false"/>
+
+        <Button
             android:id="@+id/btn_perm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

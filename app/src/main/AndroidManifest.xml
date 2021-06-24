@@ -26,12 +26,20 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:requestLegacyExternalStorage="true">
-
-        <activity android:name=".PermissionActivity"/>
+        android:launchMode="singleTop">
+        <activity android:name=".HotPlugActivity"
+            android:launchMode="singleTop">
+        <intent-filter>
+            <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+        </intent-filter>
+        <meta-data android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+            android:resource="@xml/device_filter" />
+        </activity>
+        <activity android:name=".PermissionActivity" />
         <activity android:name=".WifiInfo" />
         <activity android:name=".HandlerActivity" />
         <activity android:name=".SystemInfo" />

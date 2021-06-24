@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     fun onMainClick(v: View?) {
         val cls: Class<*>? = when (v?.id) {
+            R.id.btn_hotplug -> HotPlugActivity::class.java
             R.id.btn_mytest -> MyTest::class.java
             R.id.btn_layout -> LayoutActivity::class.java
             R.id.btn_log -> LogActivity::class.java
