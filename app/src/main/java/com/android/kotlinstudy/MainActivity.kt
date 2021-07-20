@@ -1,12 +1,21 @@
 package com.android.kotlinstudy
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PowerManager
+import android.provider.Settings
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.view.ViewConfiguration
 import android.widget.Toast
 import com.android.kotlinstudy.layout.LayoutActivity
+import com.android.kotlinstudy.utils.LogUtil
+import java.lang.Exception
+import java.lang.reflect.Field
 
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setOverFlowShowingAlways()
         Log.d(mTab, "onCreate")
     }
 
@@ -61,5 +71,54 @@ class MainActivity : AppCompatActivity() {
         }
 
         Toast.makeText(this, "Can not get class" + v?.id, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setOverFlowShowingAlways() {
+        try {
+            val config = ViewConfiguration.get(this)
+            val menuKeyField: Field? = ViewConfiguration::class.java.getDeclaredField("sHasPermanentMenuKey")
+            menuKeyField?.let {
+                menuKeyField.isAccessible = true
+                menuKeyField.setBoolean(config, false)
+                return
+            }
+
+            LogUtil.d(mTab, "Field get Fail!")
+        } catch (e: Exception) {
+
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_info -> {
+                val intent = Intent(Settings.ACTION_DEVICE_INFO_SETTINGS)
+                startActivity(intent)
+            }
+
+            R.id.action_settings -> {
+                startActivity(Intent(Settings.ACTION_SETTINGS))
+            }
+
+            R.id.action_dials -> {
+                startActivity(Intent(Intent.ACTION_DIAL))
+            }
+
+            R.id.action_develop -> {
+                startActivity(Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS))
+            }
+
+            R.id.reboot_recovery -> {
+                val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+                powerManager.reboot("recovery")
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

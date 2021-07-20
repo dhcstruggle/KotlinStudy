@@ -4,4 +4,9 @@
     <string name="status_list">Device List</string>
     <string name="status_removed">Device Detached</string>
     <string name="status_added">Device Attached</string>
+    <string name="system_info">System Info</string>
+    <string name="start_settings">Android Setting</string>
+    <string name="start_dials">Dial</string>
+    <string name="develop_settings">Developer Mode</string>
+    <string name="reboot_recovery">Reboot Recovery</string>
 </resources>
