@@ -30,7 +30,7 @@ class PermissionAccessUtil (private val context: Context) {
         )
     }
 
-    public fun checkAndGetPermission() {
+    fun checkAndGetPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             // 先判断有没有权限
             if (!Environment.isExternalStorageManager()) {
@@ -61,7 +61,7 @@ class PermissionAccessUtil (private val context: Context) {
         }
     }
 
-    fun RequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    fun requestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when(requestCode) {
             1 -> {
                 for (i in grantResults.indices) {
