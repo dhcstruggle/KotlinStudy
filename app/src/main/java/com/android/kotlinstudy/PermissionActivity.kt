@@ -15,7 +15,7 @@ class PermissionActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        mPermissionAccesser.RequestPermissionsResult(requestCode, permissions, grantResults)
+        mPermissionAccesser.requestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     fun onPermAccessClick(v: View?) {
