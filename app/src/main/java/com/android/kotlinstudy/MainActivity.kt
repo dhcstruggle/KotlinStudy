@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_main)
+        val info = packageManager.getPackageInfo(packageName, 0)
+        title = title.toString() + "-" + info.versionName
         setOverFlowShowingAlways()
         Log.d(mTab, "onCreate")
     }

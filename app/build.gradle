@@ -6,12 +6,15 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
-    defaultConfig {
+    def getVersionName = { ->
+        return new Date().format("YYYY-MM-dd HH:mm:ss", TimeZone.getTimeZone("GMT+08:00"))
+    }
+        defaultConfig {
         applicationId "com.android.kotlinstudy"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName getVersionName()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,6 +32,17 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                def createTime = new Date().format("YYYY-MM-dd", TimeZone.getTimeZone("GMT+08:00"))
+                // app包名称
+                outputFileName = "KotlinStudy_" + createTime + "_" + buildType.name + ".apk"
+                // 指定release输出到指定文件夹
+                //variant.getPackageApplication().outputDirectory = new File("/${createTime}")
+            }
+    }
 }
 
 dependencies {
@@ -37,7 +51,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2'
     implementation 'me.jahnen:libaums:0.8.0'
     testImplementation 'junit:junit:4.13.2'

@@ -14,12 +14,7 @@ import com.android.kotlinstudy.utils.USB.readConfigurationDescriptor
 import com.android.kotlinstudy.utils.USB.readDeviceDescriptor
 import com.github.mjdev.libaums.UsbMassStorageDevice
 import com.github.mjdev.libaums.fs.UsbFile
-import com.github.mjdev.libaums.fs.UsbFileStreamFactory
 import kotlinx.android.synthetic.main.activity_hot_plug.*
-import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
-import java.io.OutputStream
 import java.text.ParseException
 import java.util.*
 
