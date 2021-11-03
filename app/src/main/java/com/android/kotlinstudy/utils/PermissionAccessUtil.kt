@@ -2,6 +2,7 @@ package com.android.kotlinstudy.utils
 
 import android.Manifest.permission
 import android.app.Activity
+import android.app.AppOpsManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -16,63 +17,138 @@ import androidx.core.content.ContextCompat
 class PermissionAccessUtil (private val context: Context) {
     private val mTab by lazy { this.javaClass.name }
     private val mActivity by lazy { context as Activity }
-    private val mNeededPermission = ArrayList<String>()
-    private val mPermissionArray by lazy {
-        arrayListOf(
-            // Wifi 扫描以及连接需要用到的权限
-            permission.CHANGE_WIFI_STATE,
-            permission.ACCESS_WIFI_STATE,
-            permission.ACCESS_FINE_LOCATION,
 
-            // 镜像制作时文件存储和扫描需要用到的权限
-            permission.WRITE_EXTERNAL_STORAGE,
-            permission.READ_EXTERNAL_STORAGE
-        )
+    val PERM_CODE_START = 1000
+    private val USAGE_PERM_CODE = 1001
+    private val LOCAT_PERM_CODE = 1002
+    private val EXSTORAGE_PERM_CODE = 1003
+
+    data class PermissionInfo(val perm:String, var isGained:Boolean, val permCheck:()-> Boolean, val permGet:()->Unit)
+    private val mPermissionArray by lazy {ArrayList<PermissionInfo>()}
+
+    private val usagePermGet = {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+                mActivity.startActivityForResult(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS), USAGE_PERM_CODE)
+        }
     }
 
-    fun checkAndGetPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            // 先判断有没有权限
-            if (!Environment.isExternalStorageManager()) {
-                val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
-                intent.data = Uri.parse("package:" + context.packageName)
-                context.startActivity(intent)
-            }
-        }
-        // android 23 版本之后有细分运行时权限，需要在这里申请
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            for (Permission in mPermissionArray) {
-                if (ContextCompat.checkSelfPermission(context, Permission)
-                    == PackageManager.PERMISSION_DENIED) {
-                    mNeededPermission.add(Permission)
-                }
-            }
-
-            if (mNeededPermission.isNotEmpty()) {
-                Log.d(mTab, "need to get permission:$mNeededPermission")
-                ActivityCompat.requestPermissions(mActivity, mNeededPermission.toTypedArray(), 1)
+    private val usagePermCheck:() -> Boolean = {
+         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            val appOpsManager = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+            (AppOpsManager.MODE_ALLOWED ==
+                    appOpsManager.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                            android.os.Process.myUid(), context.packageName))
             } else {
-                Log.d(mTab, "already get all permission:$mPermissionArray")
-                ToastUtil.showMsg(context, "already get all permission")
+                Log.d(mTab, "SDK:${Build.VERSION.SDK_INT},do not have USAGE_STATS perm,but set true")
+                true
             }
+    }
 
-        } else {
-            Log.d(mTab, "SDK=${Build.VERSION.SDK_INT}, no runTime Permission")
+    private val locationPermGet = {
+        ArrayList<String>().run {
+            add(permission.ACCESS_FINE_LOCATION)
+            ActivityCompat.requestPermissions(mActivity, this.toTypedArray(), LOCAT_PERM_CODE)
         }
     }
 
-    fun requestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when(requestCode) {
-            1 -> {
-                for (i in grantResults.indices) {
-                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                        Log.d(mTab, "Get Permission(${permissions[i]}) success")
-                    } else {
-                        Log.d(mTab, "Get Permission(${permissions[i]}) Fail")
-                    }
+    private val locationPermCheck:() -> Boolean = {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            (ContextCompat.checkSelfPermission(context, permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_DENIED)
+        } else {
+            Log.d(mTab, "SDK:${Build.VERSION.SDK_INT},do not have ${permission.ACCESS_FINE_LOCATION} perm,but set true")
+            true
+        }
+    }
+
+    private val exStoragePermGet = {
+        when  {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> {
+                Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION).run {
+                    data = Uri.parse("package:" + context.packageName)
+                    mActivity.startActivityForResult(this, EXSTORAGE_PERM_CODE)
                 }
             }
+
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
+                ArrayList<String>().run {
+                    add(permission.WRITE_EXTERNAL_STORAGE)
+                    ActivityCompat.requestPermissions(mActivity, this.toTypedArray(), EXSTORAGE_PERM_CODE)
+                }
+            }
+
+            else -> { }
         }
     }
 
+    private val exStoragePermCheck:() -> Boolean = {
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> Environment.isExternalStorageManager()
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
+                (ContextCompat.checkSelfPermission(context, permission.WRITE_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_DENIED)
+            }
+            else -> {
+                Log.d(mTab, "SDK:${Build.VERSION.SDK_INT},do not have ${permission.WRITE_EXTERNAL_STORAGE} runtime perm,but set true")
+                true
+            }
+        }
+    }
+
+    init {
+        mPermissionArray.add(PermissionInfo("USAGE_STATS", false, usagePermCheck, usagePermGet))
+        mPermissionArray.add(PermissionInfo(permission.ACCESS_FINE_LOCATION, false, locationPermCheck, locationPermGet))
+        mPermissionArray.add(PermissionInfo(permission.WRITE_EXTERNAL_STORAGE, false, exStoragePermCheck, exStoragePermGet))
+
+        for (permInfo in mPermissionArray) {
+            if (permInfo.permCheck()) {
+                Log.d(mTab, "${permInfo.perm} already get permission")
+                permInfo.isGained = true
+            }
+        }
+    }
+
+    fun run () {
+        for (permInfo in mPermissionArray) {
+            if (permInfo.permCheck()) {
+                permInfo.isGained = true
+            } else {
+                Log.d(mTab, "start get permission:${permInfo.perm}")
+                permInfo.permGet()
+                return
+            }
+        }
+
+        Log.d(mTab, "already get all permission")
+    }
+
+    fun isAllPermAccessed() :Boolean {
+        for (permInfo in mPermissionArray) {
+            Log.d(mTab, "${permInfo.perm}:${permInfo.isGained}")
+            if (permInfo.isGained) {
+                continue
+            }
+
+            return false
+        }
+        return true
+    }
+
+    fun permsResultCheck() {
+        for (permission in mPermissionArray) {
+            if (permission.permCheck()) {
+                Log.d(mTab, "P:Get Permission(${permission.perm}) success")
+                permission.isGained = true
+            }
+        }
+    }
+
+    fun onActivityResultCheck() {
+        for (permission in mPermissionArray) {
+            if (permission.permCheck()) {
+                Log.d(mTab, "A:Get Permission(${permission.perm}) success")
+                permission.isGained = true
+            }
+        }
+    }
 }

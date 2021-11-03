@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             R.id.btn_listview -> null
             R.id.btn_gridview -> null
             R.id.btn_recyclerview -> null
-            R.id.btn_webview -> null
+            R.id.btn_webview -> WebViewActivity::class.java
             R.id.btn_toast -> null
             R.id.btn_dialog -> null
             R.id.btn_progress -> null
@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             R.id.btn_sys_infos -> SystemInfo::class.java
             R.id.btn_wifi_infos -> WifiInfo::class.java
             R.id.btn_perm -> PermissionActivity::class.java
+            R.id.btn_app_usage -> AppUsageActivity::class.java
             else -> null
         }
 
