@@ -36,11 +36,11 @@ class MainActivity : AppCompatActivity() {
     fun onMainClick(v: View?) {
         val cls: Class<*>? = when (v?.id) {
             R.id.btn_hotplug -> HotPlugActivity::class.java
-            R.id.btn_mytest -> MyTest::class.java
+            R.id.btn_mytest -> ExStorageTestActivity::class.java
             R.id.btn_layout -> LayoutActivity::class.java
             R.id.btn_log -> LogActivity::class.java
             R.id.btn_bank_service -> null
-            R.id.btn_service -> null
+            R.id.btn_service -> ServiceActivity::class.java
             R.id.btn_broad -> null
             R.id.btn_data -> null
             R.id.btn_handler -> HandlerActivity::class.java
@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             R.id.btn_wifi_infos -> WifiInfo::class.java
             R.id.btn_perm -> PermissionActivity::class.java
             R.id.btn_app_usage -> AppUsageActivity::class.java
+            R.id.btn_alert -> AlertActivity::class.java
             else -> null
         }
 

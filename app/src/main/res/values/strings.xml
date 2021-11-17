@@ -9,4 +9,5 @@
     <string name="start_dials">Dial</string>
     <string name="develop_settings">Developer Mode</string>
     <string name="reboot_recovery">Reboot Recovery</string>
+    <string name="access_permission">Access Permission</string>
 </resources>

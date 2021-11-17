@@ -1,6 +1,5 @@
 package com.android.kotlinstudy
 
-import android.annotation.SuppressLint
 import android.app.AppOpsManager
 import android.app.usage.*
 import android.content.Context
